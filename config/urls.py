@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('homeapp.urls')),
     path('post/', include('postapp.urls')),
+    path('account/', include('accountapp.urls')),
     path('', accountapp.views.login, name='login'),
-    path('accounts/', include('allauth.urls'))
+    path('accounts/', include('allauth.urls')),
 ]

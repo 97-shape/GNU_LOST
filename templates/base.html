@@ -21,9 +21,9 @@
         {% if user.is_authenticated %}
             <h5>안녕하세요!</h5>
             <h5>{{user.username}}님</h5>
-            <a href="accounts/logout/">로그아웃</a>
+            <a href="/accounts/logout/">로그아웃</a>
         {% else %}
-            <a href="accounts/kakao/login/?process=login"><img class = "kakao" src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="" ></a>
+            <a href="/accounts/kakao/login/?process=login"><img class = "kakao" src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="" ></a>
         {% endif %}
         </div>
         <br>
@@ -71,7 +71,7 @@
             </a>
         </div>
         <div>
-            <a href="#" class="text-decoration-none link-dark fs-3">
+            <a href="/home/" class="text-decoration-none link-dark fs-3">
                 <i class="bi bi-house-door-fill"></i>
                 <h6>홈</h6>
             </a>
@@ -83,7 +83,7 @@
             </a>
         </div>
         <div>
-            <a href="#" class="text-decoration-none link-dark fs-3">
+            <a href="{% url 'accountapp:myaccount' %}" class="text-decoration-none link-dark fs-3">
                 <i class="bi bi-person-fill"></i>
                 <h6>내정보</h6>
             </a>

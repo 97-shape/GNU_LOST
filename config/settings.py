@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     #etc
     'bootstrap5',
     'rest_framework',
-    'sslserver',
     #app
     'homeapp',
     'postapp',
@@ -61,12 +60,12 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
+# allauth
 SITE_ID = 1
 LOGIN_REDIRECT_URL =  '/'
 LOGOUT_REDIRECT_URL =  '/'
 ACCOUNT_LOGOUT_ON_GET = True
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '981912445205-ikh3bkbp3sma10ith3l3428c0d9dv5ug.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIALACCOUNT_LOGIN_ON_GET = True  # 소셜로그인 확인창 스킵
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -103,12 +102,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+DATABASES = my_setting.DATABASES
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -153,3 +147,6 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
