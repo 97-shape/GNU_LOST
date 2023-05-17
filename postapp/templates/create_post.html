@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+<div style="text-align: center; max-width: 500px; margin: 4rem auto;">
+  <form method="post" enctype="multipart/form-data" class="needs-validation">
+    {{ formset.media }}
+    {% csrf_token %}
+    <div class="row g-3 needs-validation">
+      <div class="col-12">
+        <label class="form-label">제목</label>
+        {{post_form.title}}
+      </div>
+      <div class="col-md-4 ">
+        <label id="" class="form-label">습득/분실</label>
+        {{post_form.category}}
+      </div>
+      <div class="col-md-4 ">
+        <label class="form-label">보상 여부</label>
+        {{post_form.reward}}
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">분류</label>
+        {{post_form.type}}
+      </div>
+      <div class="col-12">
+        {{post_form.content}}
+      </div>
+      <div class="col-12">
+        {{ photo_formset.management_form }}
+        {% for form in photo_formset %}
+          <tr>
+            <td>
+            {{ form.src }}
+            </td>
+          </tr>
+        {% endfor %}
+      </div>
+    </div>
+
+    {{ post_form.writedate.errors }}
+    <button type="submit" class="btn btn-primary mb-5 mt-2">글 작성</button>
+  </form>
+</div>
+
+
+{% endblock %}

@@ -3,26 +3,31 @@
 
 {% block content %}
 
-<div id="carouselExample" class="carousel slide" style="width:30%; margin:auto; background-color:black">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+    <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
 
-{% endblock %}a
+        {% for post in posts %}
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="..." class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{post.title}}</h5>
+                        <p class="card-text">{{post.type}} &nbsp {{post.category}}</p>
+                        {% if post.reward %}
+                            <p class="card-text">보상O</p>
+                        {% else %}
+                            <p class="card-text">보상X</p>
+                        {% endif %}
+                        <p class="card-text"><small class="text-body-secondary">{{post.writedate}}</small></p>
+                        {{post.photo}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
