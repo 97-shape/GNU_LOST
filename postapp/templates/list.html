@@ -1,16 +1,15 @@
-{% extends 'base.html' %}
+{% extends 'base_filter.html' %}
 {% load bootstrap5 %}
 
 {% block content %}
 
     <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
-
         {% for post in posts %}
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
-                <div class="col-md-4">
-                    {% with first_photo=post.get_first_photo %}
-                    <img src="/media/{{first_photo.photo}}" class="img-fluid rounded-start" alt="{{first_photo.photo}}">
+                <div class="col-md-4" style="max-width: 200px; max-height: 200px">
+                    {% with thubnail=post.get_thubnail %}
+                        <img src="/media/{{thubnail.photo}}" style="height:95%; margin-top: 2.5%; margin-left: 2px;" class="img-fluid rounded-start" alt="사진X">
                     {% endwith %}
                 </div>
                 <div class="col-md-8">
@@ -28,7 +27,7 @@
             </div>
         </div>
         {% endfor %}
-        <div class="mt-5 mb-5">$nbsp</div>
+        <div class="mt-5 mb-5">&nbsp</div>
     </div>
 
 

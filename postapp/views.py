@@ -12,6 +12,16 @@ def displayDetail(request):
 
 def list(request):
     posts = Post.objects.prefetch_related('photos')
+    return render(request, "list.html", {"posts":posts})
+
+def filterdList(request, category, type):
+    if type == "카드":
+        type = "카드/신분증"
+
+    posts = Post.objects.prefetch_related('photos').filter(
+        category = category,
+        type = type
+    )
 
     return render(request, "list.html", {"posts":posts})
 

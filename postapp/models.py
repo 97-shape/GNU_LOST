@@ -30,7 +30,7 @@ class Post(models.Model):
     type = models.CharField(max_length=100)
     reward = models.IntegerField()
 
-    def get_first_photo(self):
+    def get_thubnail(self):
         return self.photos.first()
 
     class Meta:

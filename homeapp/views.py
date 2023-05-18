@@ -5,11 +5,9 @@ from postapp.models import Post, Photo
 
 
 def homeView(request):
-    from django.db.models import Max
-    posts = Post.objects.filter(
+    # 가장 최신인 습득 마지막
+    new_post = Post.objects.prefetch_related('photos').filter(
         category = '습득'
     ).latest('writedate')
-    photo = Photo.objects.filter(
-        post_id = posts.post_id
-    ).first()
-    return render(request, "home.html", {'posts': posts, 'photo': photo})
+
+    return render(request, "home.html", {"new_post": new_post})
