@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.db.models import Min
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -7,11 +8,12 @@ from postapp.models import Post
 
 
 def displayDetail(request):
-    return render(request, "detail.html")
+    return render(request, "list.html")
 
-def test(request):
-    posts = Post.objects.all()
-    return render(request, "detail.html", {"posts":posts})
+def list(request):
+    posts = Post.objects.prefetch_related('photos')
+
+    return render(request, "list.html", {"posts":posts})
 
 User = get_user_model()  #  request.user을 User 모델 형식으로
 
@@ -21,10 +23,14 @@ def create_post(request):
         photo_formset = PhotoFormSet(request.POST, request.FILES, prefix='photo')
         if post_form.is_valid() and photo_formset.is_valid():
             post = post_form.save(commit=False)
-            post.id = request.user
+            post.user = request.user
             post.save()
-            photo_formset.instance = post
-            photo_formset.save()
+            for form in photo_formset:
+                if form.cleaned_data.get('photo'):  # 이미지가 업로드되었는지 확인
+                    photo = form.save(commit=False)
+                    photo.post = post  # post와 photo를 연결
+                    photo.save()
+                    post.photos.add(photo)  # post와 photo를 연결
             return redirect('detail')
     else:
         post_form = PostForm(prefix='post')

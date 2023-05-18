@@ -5,8 +5,8 @@
 
 <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
   <form method="post" enctype="multipart/form-data" class="needs-validation">
-    {{ formset.media }}
     {% csrf_token %}
+    {{ formset.media }}
     <div class="row g-3 needs-validation">
       <div class="col-12">
         <label class="form-label">제목</label>
@@ -30,11 +30,9 @@
       <div class="col-12">
         {{ photo_formset.management_form }}
         {% for form in photo_formset %}
-          <tr>
-            <td>
-            {{ form.src }}
-            </td>
-          </tr>
+          <div class="form-group">
+            {{ form.photo }}
+          </div>
         {% endfor %}
       </div>
     </div>

@@ -9,7 +9,9 @@
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="..." class="img-fluid rounded-start" alt="...">
+                    {% with first_photo=post.get_first_photo %}
+                    <img src="/media/{{first_photo.photo}}" class="img-fluid rounded-start" alt="{{first_photo.photo}}">
+                    {% endwith %}
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -21,12 +23,12 @@
                             <p class="card-text">보상X</p>
                         {% endif %}
                         <p class="card-text"><small class="text-body-secondary">{{post.writedate}}</small></p>
-                        {{post.photo}}
                     </div>
                 </div>
             </div>
         </div>
         {% endfor %}
+        <div class="mt-5 mb-5">$nbsp</div>
     </div>
 
 

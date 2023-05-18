@@ -19,10 +19,10 @@ class PostForm(forms.ModelForm):
         fields = ['title', 'category', 'reward', 'type', 'content', 'writedate']
 
 class PhotoForm(forms.ModelForm):
-    src = forms.ImageField(widget=forms.ClearableFileInput(attrs={'multiple': False, 'class': 'form-control mb-3'}),
+    photo = forms.ImageField(widget=forms.ClearableFileInput(attrs={'multiple': False, 'class': 'form-control mb-3'}),
                               required=False)
     class Meta:
         model = Photo
-        fields = ['src']
+        fields = ['photo']
 
 PhotoFormSet = inlineformset_factory(Post, Photo, form=PhotoForm, extra=8)
