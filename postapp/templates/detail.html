@@ -1,0 +1,61 @@
+{% extends 'base_filter.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+<div style="text-align: center; max-width: 500px; margin: 4rem auto;">
+
+  <!--이미지 슬라이드-->
+  <div id="carouselExampleIndicators" class="carousel carousel-dark slide">
+    <div class="carousel-indicators">
+      {% for i in index %}
+        {% if forloop.first %}
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        {% else %}
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{i}}" aria-label="Slide {{i}}"></button>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="carousel-inner">
+      {% for photo in photos %}
+      {% if forloop.first %}
+      <div class="carousel-item active" style="height: 500px;">
+        <img src="/media/{{photo.photo}}" class="h-100" alt="...">
+      </div>
+      {% else %}
+      <div class="carousel-item" style="height: 500px;">
+        <img src="/media/{{photo.photo}}" class="h-100" alt="...">
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!--게시글 본체-->
+
+  <div style="text-align: left; margin-top: 20px;" class="ms-2">
+    <h2>{{post.title}}</h2>
+    <p class="ms-1 fs-5">{{post.type}} | 보상 :
+      {% if post.reward %}
+          O
+      {% else %}
+          X
+      {% endif %}
+    </p>
+    <p style="margin: 20px 0px;">
+      {{post.content}}
+    </p>
+  </div>
+  <a href="{{ previous_url }}" class="btn btn-primary">목록</a>
+  <div class="mt-5 mb-5">&nbsp</div>
+</div>
+
+{% endblock %}
