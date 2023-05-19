@@ -33,14 +33,26 @@
             </button>
             <div class="collapse show" id="device-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded" style="width:80%">카드/신분증</a></li>
-                    <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded" style="width:80%">지갑</a></li>
-                    <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded" style="width:80%">전자기기</a></li>
-                    <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded" style="width:80%">의류</a></li>
-                    <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded" style="width:80%">기타</a></li>
+                    <li><a href="/post/list/분실/카드" class="link-dark d-inline-flex text-decoration-none rounded" style="width:80%">카드/신분증</a></li>
+                    <li><a href="/post/list/분실/지갑" class="link-dark d-inline-flex text-decoration-none rounded" style="width:80%">지갑</a></li>
+                    <li><a href="/post/list/분실/전자기기" class="link-dark d-inline-flex text-decoration-none rounded" style="width:80%">전자기기</a></li>
+                    <li><a href="/post/list/분실/의류" class="link-dark d-inline-flex text-decoration-none rounded" style="width:80%">의류</a></li>
+                    <li><a href="/post/list/분실/기타" class="link-dark d-inline-flex text-decoration-none rounded" style="width:80%">기타</a></li>
                 </ul>
-                <hr style="width:80%; text-align: center; margin: 0px auto;">
             </div>
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#device-collapse2" aria-expanded="true">
+                습득물 &nbsp;
+            </button>
+            <div class="collapse show" id="device-collapse2">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="/post/list/습득/카드" class="link-dark d-inline-flex text-decoration-none rounded" style="width:80%">카드/신분증</a></li>
+                    <li><a href="/post/list/습득/지갑" class="link-dark d-inline-flex text-decoration-none rounded" style="width:80%">지갑</a></li>
+                    <li><a href="/post/list/습득/전자기기" class="link-dark d-inline-flex text-decoration-none rounded" style="width:80%">전자기기</a></li>
+                    <li><a href="/post/list/습득/의류" class="link-dark d-inline-flex text-decoration-none rounded" style="width:80%">의류</a></li>
+                    <li><a href="/post/list/습득/기타" class="link-dark d-inline-flex text-decoration-none rounded" style="width:80%">기타</a></li>
+                </ul>
+            </div>
+            <hr style="width:80%; text-align: center; margin: 0px auto;">
             <div>
                 <h6><a href="#" class="mt-3 link-dark d-inline-flex text-decoration-none rounded" style="width:80%">게시판</a></h6>
                 <h6><a href="#" class="link-dark d-inline-flex text-decoration-none rounded" style="width:80%">이용 가이드</a></h6>
@@ -58,31 +70,31 @@
         <h3>카테고리</h3>
         <div class="d-flex flex-row justify-content-between">
             <div class="p-2">
-                <a href="/post/list/분실/카드" class="text-decoration-none link-dark fs-3">
+                <a href="/post/list/{{prev_url}}카드" class="text-decoration-none link-dark fs-3">
                     <i class="bi bi-credit-card"></i>
                     <h6>카드/신분증</h6>
                 </a>
             </div>
             <div class="p-2">
-                <a href="/post/list/분실/지갑" class="text-decoration-none link-dark fs-3">
+                <a href="/post/list/{{prev_url}}지갑" class="text-decoration-none link-dark fs-3">
                     <i class="bi bi-wallet2"></i>
                     <h6>지갑</h6>
                 </a>
             </div>
             <div class="p-2">
-                <a href="/post/list/분실/전자기기" class="text-decoration-none link-dark fs-3">
+                <a href="/post/list/{{prev_url}}전자기기" class="text-decoration-none link-dark fs-3">
                     <i class="bi bi-tablet"></i>
                     <h6>전자기기</h6>
                 </a>
             </div>
             <div class="p-2">
-                <a href="/post/list/분실/의류" class="text-decoration-none link-dark fs-3">
+                <a href="/post/list/{{prev_url}}의류" class="text-decoration-none link-dark fs-3">
                     <i class="fas fa-tshirt	"></i>
                     <h6>의류</h6>
                 </a>
             </div>
             <div class="p-2">
-                <a href="/post/list/분실/기타" class="text-decoration-none link-dark fs-3">
+                <a href="/post/list/{{prev_url}}기타" class="text-decoration-none link-dark fs-3">
                     <i class="bi bi-three-dots"></i>
                     <h6>기타</h6>
                 </a>

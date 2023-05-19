@@ -4,14 +4,21 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from postapp.forms import PostForm, PhotoFormSet
-from postapp.models import Post
+from postapp.models import Post, Photo
 
-
-def displayDetail(request):
-    return render(request, "list.html")
 
 def list(request):
     posts = Post.objects.prefetch_related('photos')
+    return render(request, "list.html", {"posts":posts})
+
+def filterdTypeList(request, type):
+    if type == "카드":
+        type = "카드/신분증"
+
+    posts = Post.objects.prefetch_related('photos').filter(
+        type = type
+    )
+
     return render(request, "list.html", {"posts":posts})
 
 def filterdList(request, category, type):
@@ -23,7 +30,9 @@ def filterdList(request, category, type):
         type = type
     )
 
-    return render(request, "list.html", {"posts":posts})
+    prev_url = category + "/"
+
+    return render(request, "list.html", {"posts":posts, 'prev_url': prev_url})
 
 User = get_user_model()  #  request.user을 User 모델 형식으로
 
@@ -52,3 +61,14 @@ def create_post(request):
     }
 
     return render(request, 'create_post.html', context)
+
+def detail_post(request, post_id):
+    previous_url = request.META.get('HTTP_REFERER', '/')  # 이전 목록으로
+
+    post = Post.objects.filter(
+        post_id = post_id
+    ).get()
+    photos = Photo.objects.filter(
+        post_id = post_id
+    )
+    return render(request, 'detail.html', {'post' : post, 'photos': photos, 'index': range(photos.count()), 'previous_url': previous_url})
