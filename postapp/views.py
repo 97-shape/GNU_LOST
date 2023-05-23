@@ -58,7 +58,7 @@ def create_post(request):
                     photo.post = post  # post와 photo를 연결
                     photo.save()
                     post.photos.add(photo)  # post와 photo를 연결
-            return redirect('detail')
+            return redirect('/post/list/')
     else:
         post_form = PostForm(prefix='post')
         photo_formset = PhotoFormSet(prefix='photo')

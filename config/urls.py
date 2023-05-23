@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 
 import accountapp.views
+from homeapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
