@@ -8,8 +8,8 @@
         <div class="card mb-3" style="max-width: 540px;" style="cursor: pointer;" onclick="redirectToContent('{{ post.post_id }}')">  <!--js를 통한 이동-->
             <div class="row g-0">
                 <div class="col-md-4" style="max-width: 200px; max-height: 200px">
-                    {% with thubnail=post.get_thubnail %}
-                        <img src="/media/{{thubnail.photo}}" style="height:95%; margin-top: 2.5%; margin-left: 2px;" class="img-fluid rounded-start" alt="사진X">
+                    {% with thumbnail=post.get_thumbnail %}
+                        <img src="/media/{{thumbnail.photo}}" style="height:95%; margin-top: 2.5%; margin-left: 2px;" class="img-fluid rounded-start" alt="사진X">
                     {% endwith %}
                 </div>
                 <div class="col-md-8">

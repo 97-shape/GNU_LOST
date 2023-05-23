@@ -3,7 +3,7 @@
 
 {% block content %}
     <div>
-        <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
+        <div style="text-align: center; max-width: 500px; margin: 8rem auto;">
 
             <h2 style="font-family: 'NanumSquareB'; margin-bottom: 3rem;">
                 {% if user.is_authenticated %}
@@ -15,7 +15,13 @@
             </h2>
             {% if user.is_authenticated %}
                 <i class="bi bi-telephone mb-1"></i>
-                <div class="mb-5">{{ user.phone_number }}</div>
+                <div class="mb-5">
+                    {% if user.phone_number %}
+                        {{ user.phone_number }}
+                    {% else %}
+                        전화번호가 등록되지 않았습니다.
+                    {% endif %}
+                </div>
                 <i class="bi bi-envelope"></i>
                 <div class="mb-5">
                     {% if user.email %}
@@ -25,6 +31,47 @@
                     {% endif %}
                 </div>
             {% endif %}
+            {% if request.user.id == user.id %}
+            <div>
+                <a href="#" class="btn btn-dark rounded-pill col-3 mt-3 mb-5">정보수정</a>
+            </div>
+            {% endif %}
+            <hr>
+            <h3 style="margin: 3rem auto">작성글</h3>
+            {% for post in posts %}
+                <div class="card mb-3" style="max-width: 540px;" style="cursor: pointer;" onclick="redirectToContent('{{ post.post_id }}')">  <!--js를 통한 이동-->
+                    <div class="row g-0">
+                        <div class="col-md-4" style="max-width: 200px; max-height: 200px">
+                            {% with thumbnail=post.get_thumbnail %}
+                                <img src="/media/{{thumbnail.photo}}" style="height:95%; margin-top: 2.5%; margin-left: 2px;" class="img-fluid rounded-start" alt="사진X">
+                            {% endwith %}
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{post.title}}</h5>
+                                <p class="card-text">{{post.type}} &nbsp {{post.category}}</p>
+                                {% if post.reward %}
+                                    <p class="card-text">보상O</p>
+                                {% else %}
+                                    <p class="card-text">보상X</p>
+                                {% endif %}
+                                <p class="card-text"><small class="text-body-secondary">{{post.writedate}}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
+
+<script>
+    function redirectToContent(postId) {
+        // 리다이렉션할 URL 생성
+        var targetURL = "/post/detail/" + postId;
+
+        // 페이지 리다이렉션
+        window.location.href = targetURL;
+    }
+</script>
+
 {% endblock %}

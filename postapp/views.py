@@ -11,17 +11,25 @@ def list(request):
     posts = Post.objects.prefetch_related('photos')
     return render(request, "list.html", {"posts":posts})
 
-def filterdTypeList(request, type):
-    if type == "카드":
-        type = "카드/신분증"
+def filterdList(request, filter):
 
-    posts = Post.objects.prefetch_related('photos').filter(
-        type = type
-    )
+    if filter in ['습득', '분실']:
+        posts = Post.objects.prefetch_related('photos').filter(
+            category=filter
+        )
+        prev_url = filter + "/"
+    else:
+        if filter == "카드":
+            filter = "카드/신분증"
 
-    return render(request, "list.html", {"posts":posts})
+        posts = Post.objects.prefetch_related('photos').filter(
+            type = filter
+        )
+        prev_url = ""
 
-def filterdList(request, category, type):
+    return render(request, "list.html", {"posts":posts, "prev_url": prev_url})
+
+def filterdDetailList(request, category, type):
     if type == "카드":
         type = "카드/신분증"
 
