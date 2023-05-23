@@ -30,12 +30,12 @@
                         메일이 등록되지 않았습니다.
                     {% endif %}
                 </div>
-            {% endif %}
-            {% if request.user.id == user.id %}
-            <div>
-                <a href="#" class="btn btn-dark rounded-pill col-3 mt-3 mb-5">정보수정</a>
-            </div>
-            {% endif %}
+                {% if request.user.id == user.id %}
+                <div>
+                    <a href="#" class="btn btn-dark rounded-pill col-3 mt-3 mb-5">정보수정</a>
+                </div>
+                {% endif %}
+
             <hr>
             <h3 style="margin: 3rem auto">작성글</h3>
             {% for post in posts %}
@@ -61,6 +61,7 @@
                     </div>
                 </div>
             {% endfor %}
+            {% endif %}
         </div>
     </div>
 
