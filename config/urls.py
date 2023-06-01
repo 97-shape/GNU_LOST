@@ -13,4 +13,5 @@ urlpatterns = [
     path('account/', include('accountapp.urls')),
     path('', accountapp.views.login, name='login'),
     path('accounts/', include('allauth.urls')),
+    path('chat/', include('chatapp.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
