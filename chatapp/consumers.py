@@ -16,6 +16,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     self.channel_name
                 )
                 await self.accept()
+
+                await self.send_existing_messages()
+
             except ChatRoom.DoesNotExist:
                 # 처리할 로직 추가
                 await self.close()
@@ -29,6 +32,22 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 str(self.room_id),  # 그룹 이름을 문자열로 변경
                 self.channel_name
             )
+
+    async def send_existing_messages(self):
+        try:
+            chat_room = await sync_to_async(ChatRoom.objects.get)(room_id=self.room_id)  # room_id로 조회
+        except ChatRoom.DoesNotExist:
+            # 처리할 로직 추가
+            return
+
+        messages = await sync_to_async(list)(ChatMessage.objects.filter(room_id=chat_room))
+        for message in messages:
+            # 유저 이름을 동적으로 처리해줌
+            sender_username = await sync_to_async(lambda: message.sender.username if message.sender else None)()
+            await self.send(text_data=json.dumps({
+                'message': message.content,
+                'sender': sender_username
+            }))
 
     async def receive(self, text_data):
         text_data_json = json.loads(text_data)
