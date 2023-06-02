@@ -7,6 +7,9 @@ from postapp.models import Post
 def login(request):
     return render(request, "login.html")
 
+def need_login(request):
+    return render(request, "login.html")
+
 def myaccount(request):
 
     posts = Post.objects.prefetch_related('photos').filter(

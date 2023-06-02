@@ -12,11 +12,11 @@ from chatapp.models import User, ChatRoom, ChatMessage
 def index(request):
     return render(request, "index.html")
 
-@login_required
+@login_required(login_url='/account/need_login')
 def room_list(request):
     return render(request, "room_list.html")
 
-@login_required
+@login_required(login_url='/account/need_login')
 def create_chatroom(request):
     if request.method == 'POST':
         user1 = request.user
@@ -26,7 +26,7 @@ def create_chatroom(request):
         # response = {'redirect_url': reverse('', args=[chat_room.id])}
         return render(request, 'room.html', {'room_id': chat_room.pk})
 
-@login_required
+@login_required(login_url='/account/need_login')
 def send_message(request, room_id):
     chat_room = ChatRoom.objects.get(id=room_id)
     if request.method == 'POST':
@@ -45,7 +45,7 @@ def get_chat_messages(room_id):
     messages = ChatMessage.objects.filter(room_id=room_id).order_by('timestamp')
     return messages
 
-@login_required
+@login_required(login_url='/account/need_login')
 def chatroom_create_or_join(request):
     if request.method == 'POST':
         # 클릭 이벤트 핸들러에서 전달한 채팅방 ID를 가져옴
@@ -61,7 +61,7 @@ def chatroom_create_or_join(request):
             # 채팅방이 존재하지 않는 경우, 채팅방 생성 후 해당 채팅방으로 이동
             return create_chatroom(request)
 
-@login_required
+@login_required(login_url='/account/need_login')
 def chatroom_detail(request, room_id):
     chat_room = ChatRoom.objects.get(room_id=room_id)
     messages = ChatMessage.objects.filter(chat_id=room_id)
