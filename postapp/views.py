@@ -11,6 +11,9 @@ def list(request):
     posts = Post.objects.prefetch_related('photos')
     return render(request, "list.html", {"posts":posts})
 
+def campusmap(request):
+    return render(request, "campus.html")
+
 def filterdList(request, filter):
 
     if filter in ['습득', '분실']:
