@@ -55,7 +55,33 @@
     </p>
   </div>
   <a href="{{ previous_url }}" class="btn btn-primary">목록</a>
+  <button id="chatButton">채팅하기</button>
   <div class="mt-5 mb-5">&nbsp</div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // 채팅하기 버튼 클릭 시 Ajax를 통해 사용자 정보 전송
+        $('#chatButton').click(function() {
+            var writer_id = '{{post.user.id}}';
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'create_room' %}',
+                data: {
+                    'writer_id': writer_id,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    // 채팅방 생성 후 리디렉션
+                    window.location.href = response.redirect_url;
+                },
+                error: function(response) {
+                    console.log(response);
+                }
+            });
+        });
+    });
+</script>
 
 {% endblock %}
