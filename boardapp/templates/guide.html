@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+<div style="text-align: center; max-width: 1000px; margin: 10rem auto;">
+
+    <div class="list-group">
+        <div href="#" class="list-group-item" aria-current="true">
+            <div class="d-flex w-100 justify-content-center">
+                <h5 class="mb-3">1. 게시글 등록 방법</h5>
+            </div>
+            <p class="mb-1">습득한 분실물을 글로 게시할 때 해당 양식을 지켜주세요!<br>‘분실물 명칭, 습득 장소, 시간’</p>
+            <small>누구나 주인임을 주장할 수 없도록 특정 정보(Ex. 핸드폰 배경화면, 가방 속 소지품 등등) 제외 후 기재 &rarr; 1:1 소통으로 본인 확인 후 물건 전달</small>
+            <div class="mb-3"></div>
+        </div>
+        <div href="#" class="list-group-item" aria-current="true">
+            <div class="d-flex w-100 justify-content-center">
+                <h5 class="mb-3">2.	분실물 전달 방법</h5>
+            </div>
+            <p class="mb-1">분실자와 습득자 간 1:1 소통이 완료되면 직접 대면 or 학내 무인 보관함을 통해 전달</p>
+            <div class="mb-3"></div>
+        </div>
+        <div href="#" class="list-group-item" aria-current="true">
+            <div class="d-flex w-100 justify-content-center">
+                <h5 class="mb-3">3.	보상 여부 결정과 기준</h5>
+            </div>
+            <p class="mb-1">보상 여부는 습득자의 선택에 따라 결정. <br> 보상 시 기준은 ‘유실물법’에 따라 물건 가액의 5~20% 내에서 보상 금액 결정</p>
+            <div class="mb-3"></div>
+        </div>
+    </div>
+
+    <div class="mt-5 mb-5">&nbsp</div>
+</div>
+
+{% endblock %}

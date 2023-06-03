@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'postapp',
     'accountapp',
     'chatapp',
+    'boardapp',
 ]
 
 AUTHENTICATION_BACKENDS = (
